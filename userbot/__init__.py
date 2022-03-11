@@ -10,7 +10,7 @@ from .sql_helper.globals import addgvar, delgvar, gvarstatus
 __version__ = "3.0.3"
 __license__ = "GNU Affero General Public License v3.0"
 __author__ = "CatUserBot <https://github.com/Jisan09/catuserbot>"
-__copyright__ = "CatUserBot Copyright (C) 2020 - 2021  " + __author__
+__copyright__ = f"CatUserBot Copyright (C) 2020 - 2021  {__author__}"
 
 catub.version = __version__
 catub.tgbot.version = __version__
@@ -48,7 +48,7 @@ if Config.PM_LOGGER_GROUP_ID == 0:
     else:
         Config.PM_LOGGER_GROUP_ID = int(gvarstatus("PM_LOGGER_GROUP_ID"))
 elif str(Config.PM_LOGGER_GROUP_ID)[0] != "-":
-    Config.PM_LOGGER_GROUP_ID = int("-" + str(Config.PM_LOGGER_GROUP_ID))
+    Config.PM_LOGGER_GROUP_ID = int(f"-{str(Config.PM_LOGGER_GROUP_ID)}")
 
 try:
     if Config.HEROKU_API_KEY is not None or Config.HEROKU_APP_NAME is not None:

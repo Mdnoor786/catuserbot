@@ -43,14 +43,10 @@ async def some(event):
     res = requests.get("https://giphy.com/")
     res = res.text.split("GIPHY_FE_WEB_API_KEY =")[1].split("\n")[0]
     api_key = res[2:-1]
-    list_id = []
     r = requests.get(
         f"https://api.giphy.com/v1/gifs/search?q={inpt}&api_key={api_key}&limit=50"
     ).json()
-    i = 0
-    while i < len(r["data"]):
-        list_id.append(r["data"][i]["id"])
-        i += 1
+    list_id = [r["data"][i]["id"] for i in range(len(r["data"]))]
     rlist = random.sample(list_id, int(count))
     for items in rlist:
         nood = await event.client.send_file(
@@ -77,7 +73,7 @@ async def some(event):
     """Its useless for single like you. Get a lover first"""
     inpt = event.pattern_match.group(1)
     reply_to_id = await reply_id(event)
-    count = 1 if not inpt else int(inpt)
+    count = int(inpt) if inpt else 1
     if count < 0 and count > 20:
         await edit_delete(event, "`Give value in range 1-20`")
     res = base64.b64decode(

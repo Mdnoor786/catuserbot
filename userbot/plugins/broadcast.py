@@ -49,8 +49,9 @@ async def catbroadcast_add(event):
             )
         return await edit_or_reply(
             event,
-            f"__Sorry! Confusion between users to whom should i send the person mentioned in message or to the person replied. text message was logged in log group. you can resend message from there__",
+            "__Sorry! Confusion between users to whom should i send the person mentioned in message or to the person replied. text message was logged in log group. you can resend message from there__",
         )
+
     if reason:
         msg = await event.client.send_message(user.id, reason)
     else:
@@ -396,7 +397,7 @@ async def catbroadcast_remove(event):
                 parse_mode=_format.parse_pre,
             )
     keyword = keyword.lower()
-    check = sql.is_in_broadcastlist(keyword, int(groupid))
+    check = sql.is_in_broadcastlist(keyword, groupid)
     if not check:
         return await edit_delete(
             event,

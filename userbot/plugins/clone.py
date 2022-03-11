@@ -91,5 +91,6 @@ async def _(event):
     await edit_delete(event, "successfully reverted to your account back")
     if BOTLOG:
         await event.client.send_message(
-            BOTLOG_CHATID, f"#REVERT\nSuccesfully reverted back to your profile"
+            BOTLOG_CHATID,
+            "#REVERT\\nSuccesfully reverted back to your profile",
         )
